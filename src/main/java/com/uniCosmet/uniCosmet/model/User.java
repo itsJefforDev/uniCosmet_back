@@ -14,23 +14,23 @@ public class User {
     private String name;
     private Integer age;
     private String email;
-    private String nickName_user;
-    private String password_user;
-    private String rol_user;
+    private String nickname;
+    private String password;
+    private String rol;
 
     public User(){
 
     }
     
-    public User(Integer id, String name, Integer age, String email, String nickName_user, String password_user,
-            String rol_user) {
+    public User(Integer id, String name, Integer age, String email, String nickname, String password,
+            String rol) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.email = email;
-        this.nickName_user = nickName_user;
-        this.password_user = password_user;
-        this.rol_user = rol_user;
+        this.nickname = nickname;
+        this.password = password;
+        this.rol = rol;
     }
 
     public Integer getId() {
@@ -65,28 +65,28 @@ public class User {
         this.email = email;
     }
 
-    public String getNickName_user() {
-        return nickName_user;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName_user(String nickName_user) {
-        this.nickName_user = nickName_user;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getPassword_user() {
-        return password_user;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassword_user(String password_user) {
-        this.password_user = password_user;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getRol_user() {
-        return rol_user;
+    public String getRol() {
+        return rol;
     }
 
-    public void setRol_user(String rol_user) {
-        this.rol_user = rol_user;
+    public void setRol(String rol_user) {
+        this.rol = rol_user;
     }
 
 }

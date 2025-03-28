@@ -3,13 +3,7 @@ package com.uniCosmet.uniCosmet.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +19,7 @@ public class UserController {
 
     // Obtener todos los productos
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
@@ -32,19 +27,38 @@ public class UserController {
 
     // Obtener un producto por su ID
     @GetMapping("/{id}")
-    public Optional<User> obtenerProductoPorId(@PathVariable Long id) {
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Optional<User> getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     // Crear un nuevo producto
     @PostMapping
-    public User guardarProducto(@RequestBody User user) {
+    @CrossOrigin(origins = "http://localhost:4200")
+    public User createUser(@RequestBody User user) {
         return userService.saveUser(user);
+    }
+
+    // Crear un nuevo producto
+    @PutMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        return ResponseEntity.ok(updatedUser); // Devuelve el usuario actualizado
     }
 
     // Eliminar un producto
     @DeleteMapping("/{id}")
-    public void eliminarProducto(@PathVariable Long id) {
+    @CrossOrigin(origins = "http://localhost:4200")
+    public void deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
+    }
+
+    // Endpoint para editar parcialmente un usuario
+    @PatchMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public ResponseEntity<User> updateUserPatch(@PathVariable Long id, @RequestBody User user) {
+        User updatedUser = userService.updateUserPatch(id, user);
+        return ResponseEntity.ok(updatedUser); // Devuelve el usuario actualizado
     }
 }

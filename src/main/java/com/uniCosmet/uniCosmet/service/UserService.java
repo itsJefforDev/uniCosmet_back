@@ -33,4 +33,47 @@ public class UserService {
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
+
+    // Método para editar un usuario
+    public User updateUser(Long id, User updatedUser) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Actualizar los campos del usuario
+        existingUser.setName(updatedUser.getName());
+        existingUser.setAge(updatedUser.getAge());
+        existingUser.setEmail(updatedUser.getEmail());
+        existingUser.setNickname(updatedUser.getNickname());
+        existingUser.setPassword(updatedUser.getPassword());
+        existingUser.setRol(updatedUser.getRol());
+
+        return userRepository.save(existingUser);
+    }
+
+        // Método para editar parcialmente un usuario
+        public User updateUserPatch(Long id, User updatedUser) {
+            User existingUser = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+            
+            // Solo actualizamos los campos que no sean nulos en el objeto updatedUser
+            if (updatedUser.getName() != null) {
+                existingUser.setName(updatedUser.getName());
+            }
+            if (updatedUser.getAge() != null) {
+                existingUser.setAge(updatedUser.getAge());
+            }
+            if (updatedUser.getEmail() != null) {
+                existingUser.setEmail(updatedUser.getEmail());
+            }
+            if (updatedUser.getNickname() != null) {
+                existingUser.setNickname(updatedUser.getNickname());
+            }
+            if (updatedUser.getPassword() != null) {
+                existingUser.setPassword(updatedUser.getPassword());
+            }
+            if (updatedUser.getRol() != null) {
+                existingUser.setRol(updatedUser.getRol());
+            }
+    
+            return userRepository.save(existingUser);
+        }
 }

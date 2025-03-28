@@ -50,6 +50,23 @@
         	<artifactId>mysql-connector-java</artifactId>
         	<version>8.0.29</version> <!-- Asegúrate de usar la versión más reciente -->
     	</dependency>
+	<dependency>
+    	<groupId>io.jsonwebtoken</groupId>
+    	<artifactId>jjwt-api</artifactId>
+    	<version>0.11.2</version>
+	</dependency>
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>1.6.9</version> <!-- Asegúrate de usar la versión más reciente -->
+    </dependency>
+		
+		<!-- Spring Boot Starter Lombok (para evitar código repetido como getters y setters) -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
