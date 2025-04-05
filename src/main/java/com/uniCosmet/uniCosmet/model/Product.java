@@ -1,9 +1,6 @@
 package com.uniCosmet.uniCosmet.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jdk.jfr.DataAmount;
 import lombok.Data;
 
@@ -16,16 +13,35 @@ public class Product {
     private String description;
     private Double price;
     private Integer stock;
+    @Lob
+    private byte[] image;
 
     public Product() {
     }
 
-    public Product(String description, Long productId, String name, Double price, Integer stock) {
+    public Product(String description, Long productId, String name, Double price, Integer stock, byte[] image) {
         this.description = description;
         this.productId = productId;
         this.name = name;
         this.price = price;
         this.stock = stock;
+        this.image = image;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getDescription() {
@@ -36,13 +52,6 @@ public class Product {
         this.description = description;
     }
 
-    public Long getproductId() {
-        return productId;
-    }
-
-    public void setproductId(Long id) {
-        this.productId = id;
-    }
 
     public String getName() {
         return name;

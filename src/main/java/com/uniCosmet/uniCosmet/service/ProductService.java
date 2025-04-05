@@ -1,16 +1,17 @@
 package com.uniCosmet.uniCosmet.service;
 
 import com.uniCosmet.uniCosmet.model.Product;
-import com.uniCosmet.uniCosmet.model.User;
 import com.uniCosmet.uniCosmet.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductSevice {
+public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
@@ -21,13 +22,11 @@ public class ProductSevice {
 
     // Obtener un producto por su ID
     public Optional<Product> getProductById(Long id) {
-
         return productRepository.findById(id);
     }
 
     // Guardar un producto
     public Product saveProduct(Product product) {
-
         return productRepository.save(product);
     }
 
@@ -37,7 +36,7 @@ public class ProductSevice {
     }
 
     // Metodo para editar un product
-    public Product updateProduct(Long id, Product product) {
+    public Product updateProduct(Long id, Product product){
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -46,6 +45,7 @@ public class ProductSevice {
         existingProduct.setDescription(product.getDescription());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setStock(product.getStock());
+        existingProduct.setImage(product.getImage());
 
         return productRepository.save(existingProduct);
     }
@@ -67,7 +67,12 @@ public class ProductSevice {
         if (product.getStock() != null) {
             existingProduct.setStock(product.getStock());
         }
+        if (product.getImage() != null) {
+            existingProduct.setImage(product.getImage());
+        }
+
 
         return productRepository.save(existingProduct);
+
     }
 }
