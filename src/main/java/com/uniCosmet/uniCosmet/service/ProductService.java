@@ -52,16 +52,16 @@ public class ProductService {
     }
 
     // Metodo para editar un product
-    public Product updateProduct(Long id, Product product){
+    public Product updateProduct(Long id, String name, String description,Double price, Integer stock, MultipartFile image) throws IOException {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         // Actualizar los campos del usuario
-        existingProduct.setName(product.getName());
-        existingProduct.setDescription(product.getDescription());
-        existingProduct.setPrice(product.getPrice());
-        existingProduct.setStock(product.getStock());
-        existingProduct.setImage(product.getImage());
+        existingProduct.setName(name);
+        existingProduct.setDescription(description);
+        existingProduct.setPrice(price);
+        existingProduct.setStock(stock);
+        existingProduct.setImage(image.getBytes());
 
         return productRepository.save(existingProduct);
     }

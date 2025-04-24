@@ -52,15 +52,20 @@ public class ProductController {
     // Crear un nuevo producto
     @PutMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, Product product) {
-        Product updatedProduct = productService.updateProduct(id,product);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado exitosamente."+ product); // Devuelve el usuario actualizado
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam("name") String name,
+                                           @RequestParam("description") String description,
+                                           @RequestParam("price") Double price,
+                                           @RequestParam("stock") Integer stock,
+                                           @RequestParam("image") MultipartFile image) throws IOException {
+        Product updatedProduct = productService.updateProduct(id,name, description, price, stock, image);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado exitosamente."+ updatedProduct); // Devuelve el usuario actualizado
     }
 
     // Eliminar un producto
     @DeleteMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<?> deleteProductById(@PathVariable Long id) {
+
         productService.deleteProductById(id);
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto eliminado exitosamente.");
     }
