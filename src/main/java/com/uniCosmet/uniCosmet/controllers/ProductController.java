@@ -52,11 +52,11 @@ public class ProductController {
     // Crear un nuevo producto
     @PutMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam("name") String name,
-                                           @RequestParam("description") String description,
-                                           @RequestParam("price") Double price,
-                                           @RequestParam("stock") Integer stock,
-                                           @RequestParam("image") MultipartFile image) throws IOException {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam(value = "name",required = false) String name,
+                                           @RequestParam(value ="description",required = false) String description,
+                                           @RequestParam(value ="price",required = false) Double price,
+                                           @RequestParam(value ="stock",required = false) Integer stock,
+                                           @RequestParam(value ="image",required = false) MultipartFile image) throws IOException {
         Product updatedProduct = productService.updateProduct(id,name, description, price, stock, image);
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado exitosamente."+ updatedProduct); // Devuelve el usuario actualizado
     }
@@ -72,9 +72,13 @@ public class ProductController {
     // Endpoint para editar parcialmente un usuario
     @PatchMapping("/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> updateUserPatch(@PathVariable Long id, Product product) {
-        Product updatedProductPatch = productService.updateProductPatch(id,product);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Producto editado exitosamente."+ product); // Devuelve el usuario actualizado
+    public ResponseEntity<?> updateUserPatch(@PathVariable Long id, @RequestParam(value = "name",required = false) String name,
+                                             @RequestParam(value ="description",required = false) String description,
+                                             @RequestParam(value ="price",required = false) Double price,
+                                             @RequestParam(value ="stock",required = false) Integer stock,
+                                             @RequestParam(value ="image",required = false) MultipartFile image) throws IOException  {
+        Product updatedProductPatch = productService.updateProductPatch(id,name, description, price, stock, image);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Producto editado exitosamente."+ updatedProductPatch); // Devuelve el usuario actualizado
     }
 
 }

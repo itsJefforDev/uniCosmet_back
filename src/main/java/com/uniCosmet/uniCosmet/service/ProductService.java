@@ -67,24 +67,27 @@ public class ProductService {
     }
 
     // Metodo para editar parcialmente un usuario
-    public Product updateProductPatch(Long id, Product product) {
+    public Product updateProductPatch(Long id, String name, String description,Double price, Integer stock, MultipartFile image) throws IOException{
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
+        System.out.println(name);
+        System.out.println(description);
+
         // Solo actualizamos los campos que no sean nulos en el objeto updatedUser
-        if (product.getName() != null) {
-            existingProduct.setName(product.getName());
+        if (name != null && !name.isEmpty()) {
+            existingProduct.setName(name);
         }
-        if (product.getPrice() != null) {
-            existingProduct.setPrice(product.getPrice());
+        if (price != null) {
+            existingProduct.setPrice(price);
         }
-        if (product.getDescription() != null) {
-            existingProduct.setDescription(product.getDescription());
+        if (description != null && !description.isEmpty()) {
+            existingProduct.setDescription(description);
         }
-        if (product.getStock() != null) {
-            existingProduct.setStock(product.getStock());
+        if (stock != null) {
+            existingProduct.setStock(stock);
         }
-        if (product.getImage() != null) {
-            existingProduct.setImage(product.getImage());
+        if (image != null && !image.isEmpty()) {
+            existingProduct.setImage(image.getBytes());
         }
 
 
