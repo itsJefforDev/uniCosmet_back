@@ -3,15 +3,23 @@ package com.uniCosmet.uniCosmet.service;
 import com.uniCosmet.uniCosmet.model.Product;
 import com.uniCosmet.uniCosmet.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductService {
+    @Value("${upload.path}")
+    private String uploadPath;
+
     @Autowired
     private ProductRepository productRepository;
 
@@ -26,7 +34,15 @@ public class ProductService {
     }
 
     // Guardar un producto
-    public Product saveProduct(Product product) {
+    public Product saveProduct(String name, String description,Double price, Integer stock, MultipartFile image) throws IOException {
+
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setStock(stock);
+        product.setImage(image.getBytes());
+
         return productRepository.save(product);
     }
 

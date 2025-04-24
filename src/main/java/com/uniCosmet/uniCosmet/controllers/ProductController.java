@@ -37,15 +37,13 @@ public class ProductController {
     // Crear un nuevo producto
     @PostMapping
     @CrossOrigin(origins = "http://localhost:4200")
-    public ResponseEntity<?> createProduct(Product product) {
-        try {
-            // Convierte la imagen base64 a un byte[] y la asigna al producto
-            if (product.getImage() != null) {
-                byte[] imageBytes = Base64.getDecoder().decode(product.getImage());
-                product.setImage(imageBytes);
-            }
-            productService.saveProduct(product);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado exitosamente.");
+    public ResponseEntity<?> createProduct(@RequestParam("name") String name,
+                                           @RequestParam("description") String description,
+                                           @RequestParam("price") Double price,
+                                           @RequestParam("stock") Integer stock,
+                                           @RequestParam("image") MultipartFile image) throws IOException {
+        try{
+        return ResponseEntity.ok(productService.saveProduct(name, description, price, stock, image));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el producto.");
         }

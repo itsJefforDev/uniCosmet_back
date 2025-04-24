@@ -13,7 +13,6 @@ public class Product {
     private String description;
     private Double price;
     private Integer stock;
-    @Lob
     private byte[] image;
 
     public Product() {
