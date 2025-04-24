@@ -1,21 +1,13 @@
 package com.uniCosmet.uniCosmet.dto;
 
-public class LoginRequest {
+public class AuthRequest {
     private String nickname;
     private String password;
 
     
-    public LoginRequest(String nickname, String password) {
+    public AuthRequest(String nickname, String password) {
         this.nickname = nickname;
         this.password = password;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public String getPassword() {
@@ -26,4 +18,11 @@ public class LoginRequest {
         this.password = password;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

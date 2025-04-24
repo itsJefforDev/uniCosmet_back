@@ -1,10 +1,10 @@
 package com.uniCosmet.uniCosmet.dto;
 
-public class LoginResponse {
+public class AuthResponse {
     
     private String token;
 
-    public LoginResponse(String token) {
+    public AuthResponse(String token) {
         this.token = token;
     }
 
