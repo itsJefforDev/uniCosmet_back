@@ -41,9 +41,11 @@ public class ProductController {
                                            @RequestParam("description") String description,
                                            @RequestParam("price") Double price,
                                            @RequestParam("stock") Integer stock,
+                                           @RequestParam("brand") String brand,
+                                           @RequestParam("category") String category,
                                            @RequestParam("image") MultipartFile image) throws IOException {
         try{
-        return ResponseEntity.ok(productService.saveProduct(name, description, price, stock, image));
+        return ResponseEntity.ok(productService.saveProduct(name, description, price, stock,brand, category, image));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al guardar el producto.");
         }
@@ -56,8 +58,10 @@ public class ProductController {
                                            @RequestParam(value ="description",required = false) String description,
                                            @RequestParam(value ="price",required = false) Double price,
                                            @RequestParam(value ="stock",required = false) Integer stock,
+                                           @RequestParam(value ="brand",required = false) String brand,
+                                           @RequestParam(value ="category",required = false) String category,
                                            @RequestParam(value ="image",required = false) MultipartFile image) throws IOException {
-        Product updatedProduct = productService.updateProduct(id,name, description, price, stock, image);
+        Product updatedProduct = productService.updateProduct(id,name, description, price, stock,brand,category, image);
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto guardado exitosamente."+ updatedProduct); // Devuelve el usuario actualizado
     }
 
@@ -76,8 +80,10 @@ public class ProductController {
                                              @RequestParam(value ="description",required = false) String description,
                                              @RequestParam(value ="price",required = false) Double price,
                                              @RequestParam(value ="stock",required = false) Integer stock,
+                                             @RequestParam(value ="brand",required = false) String brand,
+                                             @RequestParam(value ="category",required = false) String category,
                                              @RequestParam(value ="image",required = false) MultipartFile image) throws IOException  {
-        Product updatedProductPatch = productService.updateProductPatch(id,name, description, price, stock, image);
+        Product updatedProductPatch = productService.updateProductPatch(id,name, description, price, stock,brand,category, image);
         return ResponseEntity.status(HttpStatus.CREATED).body("Producto editado exitosamente."+ updatedProductPatch); // Devuelve el usuario actualizado
     }
 

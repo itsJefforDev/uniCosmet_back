@@ -13,34 +13,38 @@ public class Product {
     private String description;
     private Double price;
     private Integer stock;
+    private String brand;
+    private String category;
     private byte[] image;
 
     public Product() {
     }
 
-    public Product(String description, Long productId, String name, Double price, Integer stock, byte[] image) {
+    public Product(String brand, String category, String description, byte[] image, String name, Double price, Long productId, Integer stock) {
+        this.brand = brand;
+        this.category = category;
         this.description = description;
-        this.productId = productId;
+        this.image = image;
         this.name = name;
         this.price = price;
-        this.stock = stock;
-        this.image = image;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
         this.productId = productId;
+        this.stock = stock;
     }
 
-    public byte[] getImage() {
-        return image;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getDescription() {
@@ -51,6 +55,13 @@ public class Product {
         this.description = description;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
 
     public String getName() {
         return name;
@@ -66,6 +77,14 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Integer getStock() {
