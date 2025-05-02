@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/products")
@@ -71,7 +69,9 @@ public class ProductController {
     public ResponseEntity<?> deleteProductById(@PathVariable Long id) {
 
         productService.deleteProductById(id);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Producto eliminado exitosamente.");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "producto eliminado");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     // Endpoint para editar parcialmente un usuario
     @PatchMapping("/{id}")
