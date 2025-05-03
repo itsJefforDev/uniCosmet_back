@@ -84,7 +84,9 @@ public class ProductController {
                                              @RequestParam(value ="category",required = false) String category,
                                              @RequestParam(value ="image",required = false) MultipartFile image) throws IOException  {
         Product updatedProductPatch = productService.updateProductPatch(id,name, description, price, stock,brand,category, image);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Producto editado exitosamente."+ updatedProductPatch); // Devuelve el usuario actualizado
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "producto editado correctamente");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
 }
