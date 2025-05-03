@@ -17,6 +17,10 @@ https://jdk.java.net/archive/
 ```
 agregar la carpeta java a las variables de entorno
 
+## Configurar version SDK del IDE
+
+Seleccionar SDK openJDK 23.0.2
+
 ## Base de datos
 base de datos mysql ultima version con las siguientes credenciales
 ```bash
