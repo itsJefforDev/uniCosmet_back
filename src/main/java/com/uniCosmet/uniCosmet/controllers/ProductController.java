@@ -19,7 +19,7 @@ public class ProductController {
 
     // Obtener todos los productos
     @GetMapping
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -27,14 +27,14 @@ public class ProductController {
 
     // Obtener un producto por su ID
     @GetMapping("/{id}")
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public Optional<Product> getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
 
     // Crear un nuevo producto
     @PostMapping
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public ResponseEntity<?> createProduct(@RequestParam("name") String name,
                                            @RequestParam("description") String description,
                                            @RequestParam("price") Double price,
@@ -51,7 +51,7 @@ public class ProductController {
 
     // Crear un nuevo producto
     @PutMapping("/{id}")
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam(value = "name",required = false) String name,
                                            @RequestParam(value ="description",required = false) String description,
                                            @RequestParam(value ="price",required = false) Double price,
@@ -65,7 +65,7 @@ public class ProductController {
 
     // Eliminar un producto
     @DeleteMapping("/{id}")
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public ResponseEntity<?> deleteProductById(@PathVariable Long id) {
 
         productService.deleteProductById(id);
@@ -75,7 +75,7 @@ public class ProductController {
     }
     // Endpoint para editar parcialmente un usuario
     @PatchMapping("/{id}")
-    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-c12a2.web.app/"})
     public ResponseEntity<?> updateUserPatch(@PathVariable Long id, @RequestParam(value = "name",required = false) String name,
                                              @RequestParam(value ="description",required = false) String description,
                                              @RequestParam(value ="price",required = false) Double price,
