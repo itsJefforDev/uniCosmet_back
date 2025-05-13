@@ -1,14 +1,22 @@
-# Usa OpenJDK 23 desde Docker Hub
+# Etapa 1: Construcción con Maven
+FROM maven:3.9.5-eclipse-temurin-23 AS build
+
+# Copia el proyecto
+WORKDIR /app
+COPY . .
+
+# Compila el proyecto y genera el .jar
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Imagen final con solo el JDK y el JAR
 FROM openjdk:23
 
-# Define el directorio de trabajo
 WORKDIR /app
 
-# Copia el JAR de la aplicación (ajusta si es necesario)
-COPY target/uniCosmet.jar app.jar
+# Copiamos el .jar desde la etapa de construcción
+COPY --from=build /app/target/uniCosmet.jar app.jar
 
-# Expón el puerto 8080
 EXPOSE 8080
 
-# Ejecuta la aplicación Spring Boot
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
