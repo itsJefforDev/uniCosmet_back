@@ -1,5 +1,5 @@
-# Usa OpenJDK 23.0.2 desde Docker Hub
-FROM openjdk:23.0.2
+# Usa OpenJDK 23 desde Docker Hub
+FROM openjdk:23
 
 # Define el directorio de trabajo
 WORKDIR /app
