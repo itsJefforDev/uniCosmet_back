@@ -25,7 +25,7 @@ public class AuthController {
     private AuthService authService;
 
     @GetMapping("/login")
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:4200", "https://unicosmet-back.onrender.com"})
     public ResponseEntity<?> login(@RequestParam String nickname, @RequestParam String password) {
         LoginRequest loginRequest = new LoginRequest(nickname, password);
         boolean authenticated = authService.authenticate(loginRequest.getNickname(), loginRequest.getPassword());
