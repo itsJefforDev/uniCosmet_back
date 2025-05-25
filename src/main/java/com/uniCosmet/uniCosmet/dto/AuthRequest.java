@@ -1,15 +1,16 @@
 package com.uniCosmet.uniCosmet.dto;
 
-public class LoginRequest {
+import com.uniCosmet.uniCosmet.model.Rol;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Arrays;
+
+public class AuthRequest {
     private String nickname;
     private String password;
 
-    
-    public LoginRequest(String nickname, String password) {
-        this.nickname = nickname;
-        this.password = password;
-    }
-
+    // Getters y setters
     public String getNickname() {
         return nickname;
     }
@@ -25,5 +26,4 @@ public class LoginRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

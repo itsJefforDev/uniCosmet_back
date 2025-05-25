@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uniCosmet.uniCosmet.model.User;
 
+import java.util.Optional;
+
 public interface AuthRepository extends JpaRepository<User, Long>{
-    User findByNickname(String nickname);
+    Optional<User> findByNickname(String nickname);
 }
