@@ -1,5 +1,6 @@
 package com.uniCosmet.uniCosmet.security;
 
+import com.uniCosmet.uniCosmet.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -38,10 +39,16 @@ public class JwtService {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+
+        User user = (User) userDetails;
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
+                .claim("id", user.getId()) // Añade ID del usuario
+                .claim("rol", user.getRol().name()) // Añade el rol
+                .claim("nickname", user.getNickname()) // Añade email si lo necesitas
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24 horas
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
