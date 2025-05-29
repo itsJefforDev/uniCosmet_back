@@ -31,7 +31,7 @@ public class User implements UserDetails { // Implementa UserDetails para Spring
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false) // Rol obligatorio
-    private Rol rol = Rol.USER; // Valor por defecto
+    private Rol rol; // Valor por defecto
 
     // Campos para UserDetails
     private boolean accountNonExpired = true;

@@ -98,11 +98,11 @@ public class UserService {
         if (updatedUser.getUsername() != null) {
             existingUser.setNickname(updatedUser.getUsername());
         }
-        if (updatedUser.getPassword() != null) {
-            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
-                existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
-            }
+
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
+
         if (updatedUser.getRol() != null) {
             existingUser.setRol(updatedUser.getRol());
         }
@@ -126,6 +126,8 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setNickname(user.getNickname());
         dto.setRol(user.getRol().name());
+        dto.setPassword(user.getPassword());
+
         return dto;
     }
 
