@@ -54,7 +54,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200", "https://unicosmet-back.onrender.com"));
+        config.setAllowedOrigins(List.of("https://unicosmet-back.onrender.com"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
         config.setAllowedHeaders(List.of("*")); // asegúrate que incluya 'Authorization'
         config.setExposedHeaders(List.of("Authorization"));
