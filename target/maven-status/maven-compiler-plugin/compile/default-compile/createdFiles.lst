@@ -24,7 +24,9 @@ com\uniCosmet\uniCosmet\repository\AuthRepository.class
 com\uniCosmet\uniCosmet\UniCosmetApplication.class
 com\uniCosmet\uniCosmet\configurations\SwaggerConfig.class
 com\uniCosmet\uniCosmet\dto\AuthRequest.class
+com\uniCosmet\uniCosmet\configurations\CloudinaryConfig.class
 com\uniCosmet\uniCosmet\exception\UserNotFoundException.class
+com\uniCosmet\uniCosmet\service\CloudinaryService.class
 com\uniCosmet\uniCosmet\service\ProductService.class
 com\uniCosmet\uniCosmet\security\JwtAuthenticationFilter.class
 com\uniCosmet\uniCosmet\dto\UserDTO.class
