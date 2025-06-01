@@ -15,12 +15,12 @@ public class Product {
     private Integer stock;
     private String brand;
     private String category;
-    private byte[] image;
+    private String image;
 
     public Product() {
     }
 
-    public Product(String brand, String category, String description, byte[] image, String name, Double price, Long productId, Integer stock) {
+    public Product(String brand, String category, String description, String image, String name, Double price, Long productId, Integer stock) {
         this.brand = brand;
         this.category = category;
         this.description = description;
@@ -55,11 +55,11 @@ public class Product {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

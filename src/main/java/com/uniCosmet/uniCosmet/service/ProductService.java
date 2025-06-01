@@ -34,7 +34,7 @@ public class ProductService {
     }
 
     // Guardar un producto
-    public Product saveProduct(String name, String description,Double price, Integer stock, String brand, String category, MultipartFile image) throws IOException {
+    public Product saveProduct(String name, String description,Double price, Integer stock, String brand, String category, String image) throws IOException {
 
         Product product = new Product();
         product.setName(name);
@@ -43,7 +43,7 @@ public class ProductService {
         product.setStock(stock);
         product.setBrand(brand);
         product.setCategory(category);
-        product.setImage(image.getBytes());
+        product.setImage(image);
 
         return productRepository.save(product);
     }
@@ -54,7 +54,7 @@ public class ProductService {
     }
 
     // Metodo para editar un product
-    public Product updateProduct(Long id, String name, String description,Double price, Integer stock,String brand, String category, MultipartFile image) throws IOException {
+    public Product updateProduct(Long id, String name, String description,Double price, Integer stock,String brand, String category, String image) throws IOException {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
@@ -65,13 +65,13 @@ public class ProductService {
         existingProduct.setStock(stock);
         existingProduct.setBrand(brand);
         existingProduct.setCategory(category);
-        existingProduct.setImage(image.getBytes());
+        existingProduct.setImage(image);
 
         return productRepository.save(existingProduct);
     }
 
     // Metodo para editar parcialmente un usuario
-    public Product updateProductPatch(Long id, String name, String description,Double price, Integer stock,String brand, String category, MultipartFile image) throws IOException{
+    public Product updateProductPatch(Long id, String name, String description,Double price, Integer stock,String brand, String category, String image) throws IOException{
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
         System.out.println(name);
@@ -97,7 +97,7 @@ public class ProductService {
             existingProduct.setCategory(category);
         }
         if (image != null && !image.isEmpty()) {
-            existingProduct.setImage(image.getBytes());
+            existingProduct.setImage(image);
         }
 
 
